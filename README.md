@@ -9,7 +9,7 @@ Install
 -------
 
     $ curl -sSL https://raw.github.com/edavis/brew-pip/master/brew_pip.py > ~/bin/brew-pip
-    $ chmod +x ~/bin/brew-pip
+    $ chmod +x ~/bin/brew-pip # make sure ~/bin is on your $PATH
 
 Usage
 -----
