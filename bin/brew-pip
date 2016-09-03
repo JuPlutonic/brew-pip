@@ -39,7 +39,7 @@ def main(args):
                package,
                "--build=%s" % build_dir,
                "--install-option=--prefix=%s" % prefix,
-               "--install-option=--install-scripts=%s" % os.path.join(prefix, "share", "python")]
+               "--install-option=--install-scripts=%s" % os.path.join(prefix, "bin")]
 
         if args.verbose:
             print(" ".join(cmd))
