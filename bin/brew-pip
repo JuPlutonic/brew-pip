@@ -10,9 +10,18 @@ import re
 import os
 import shutil
 import argparse
+import subprocess
 import tempfile
 
-HOMEBREW_CELLAR = os.environ.get("HOMEBREW_CELLAR")
+HOMEBREW_CELLAR = os.environ.get("HOMEBREW_CELLAR", None)
+if not HOMEBREW_CELLAR:
+    try:
+        output = subprocess.check_output(["brew", "--prefix"], stderr=subprocess.STDOUT)
+        HOMEBREW_CELLAR = str(output, "utf-8").splitlines()[0] + "/Cellar"
+    except subprocess.CalledProcessError as e:
+        print("warning: falling back to hardcoded HOMEBREW_CELLAR=/usr/local/Cellar")
+        HOMEBREW_CELLAR = "/usr/local/Cellar"
+
 
 def main(args):
     for package in args.packages:
