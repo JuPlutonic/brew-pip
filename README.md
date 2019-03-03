@@ -13,13 +13,15 @@ Install
 Usage
 -----
 
-    brew pip mercurial        # install the latest mercurial package
-    brew pip django==1.2      # install django-1.2
-    brew pip ~/tox-1.3.tar.gz # can install local packages, too
-    brew pip -u django==1.3.1 # upgrade to django-1.3.1
-    brew pip -k ipython       # install ipython, but don't link it (i.e., keg-only)
-    brew rm django            # uninstallation taken care of by homebrew itself
-    brew pip -h               # for help
+    brew pip install mercurial        # install the latest mercurial package
+    brew pip install django==1.2      # install django-1.2
+    brew pip install ~/tox-1.3.tar.gz # can install local packages, too
+    brew pip install -u django==1.3.1 # upgrade to django-1.3.1
+    brew pip install -k ipython       # install ipython, but don't link it (i.e., keg-only)
+    brew pip uninstall django         # uninstall a previously installed package
+    brew pip reinstall django         # reinstall a package
+    brew pip list                     # list installed packages
+    brew pip -h                       # for help
 
 Setup
 -----
@@ -30,7 +32,7 @@ So python can load your installed libraries, you need to update your `PYTHONPATH
 
 And for any scripts to be found, you need to update your `PATH`:
 
-    export PATH=$PATH:$(brew --prefix)/share/python
+    export PATH=$PATH:$(brew --prefix)/bin
 
 But doesn't everybody use virtualenv now?
 -----------------------------------------
@@ -47,7 +49,13 @@ It's the best of both worlds.
 Changelog
 ---------
 
-*In development*
+v0.5.0 *(2019-03-03)*
+
+- Install scripts to `bin` and not `share/python`
+- Add fallback when HOMEBREW_CELLAR is not specified
+- Match cli experience given by brew-cask
+
+v0.4.1 *(2013-12-03)*
 
 - Add a `--version` argument
 - Handles `@rev` syntax correctly
