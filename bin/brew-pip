@@ -62,12 +62,12 @@ def main(args):
         prefix = os.path.join(HOMEBREW_CELLAR, cellar_package_name, "pypi")
         build_dir = tempfile.mkdtemp(prefix='brew-pip-')
 
-        cmd = ["pip", "install",
+        cmd = ["TMPDIR=/tmp/%s" % build_dir, "pip", "install",
                "-v" if args.verbose else "",
                package,
-               "--build=%s" % build_dir,
-               "--install-option=--prefix=%s" % prefix,
-               "--install-option=--install-scripts=%s" % os.path.join(prefix, "bin")]
+               "--no-clean",
+               "--prefix=''",
+               "--target=%s" % os.path.join(prefix, "bin")]
 
         if args.verbose:
             print(" ".join(cmd))
